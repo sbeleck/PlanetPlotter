@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>World Detail: {{world.name}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto col-11">
+            <li class="nav-item"><span class="navbar-brand mx-2 my-1 h2">Edit World: {{world.name}}</span></li>
+            <li class="nav-item"><a href="/swn" class="nav-item btn btn-light mx-2 my-1">Sector List</a></li>
+            <li class="nav-item"><a href="/swn/sectordetail/{{world.sector.id}}" class="nav-item btn btn-light mx-2 my-1">Back to {{world.sector.name}}</a></li>
+            <li class="nav-item"><a href="/swn/worlddetail/{{world.id}}" class="nav-item btn btn-light mx-2 my-1">Back to {{world.name}}</a></li>
+        </ul>
+        <a href="/logout" class="nav-item btn btn-info my-1 col-1">Logout</a>
+    </nav>
+    <div class="form-group form-group-lg mx-5 my-5">
+        <form action="/swn/updateworld/{{world.id}}" method="POST">
+            {% csrf_token %}
+            <label for="world_name">World Name:</label>
+            <input id="world_name" type="text" name="world_name" value="{{world.name}}"><br>
+            <label for="x_coord">X Coordinate:</label>
+            <select id="xcoord" name="x_coord">
+                <option value=1 {% if world.x_coord == 1 %} selected {% endif %}>1</option>
+                <option value=2 {% if world.x_coord == 2 %} selected {% endif %}>2</option>
+                <option value=3 {% if world.x_coord == 3 %} selected {% endif %}>3</option>
+                <option value=4 {% if world.x_coord == 4 %} selected {% endif %}>4</option>
+                <option value=5 {% if world.x_coord == 5 %} selected {% endif %}>5</option>
+                <option value=6 {% if world.x_coord == 6 %} selected {% endif %}>6</option>
+                <option value=7 {% if world.x_coord == 7 %} selected {% endif %}>7</option>
+                <option value=8 {% if world.x_coord == 8 %} selected {% endif %}>8</option>
+            </select><br>
+            <label for="y_coord">Y Coordinate:</label>
+            <select id="y_coord" name="y_coord">
+                <option value=1 {% if world.y_coord == 1 %} selected {% endif %}>1</option>
+                <option value=2 {% if world.y_coord == 2 %} selected {% endif %}>2</option>
+                <option value=3 {% if world.y_coord == 3 %} selected {% endif %}>3</option>
+                <option value=4 {% if world.y_coord == 4 %} selected {% endif %}>4</option>
+                <option value=5 {% if world.y_coord == 5 %} selected {% endif %}>5</option>
+                <option value=6 {% if world.y_coord == 6 %} selected {% endif %}>6</option>
+                <option value=7 {% if world.y_coord == 7 %} selected {% endif %}>7</option>
+                <option value=8 {% if world.y_coord == 8 %} selected {% endif %}>8</option>
+                <option value=9 {% if world.y_coord == 9 %} selected {% endif %}>9</option>
+                <option value=10 {% if world.y_coord == 10 %} selected {% endif %}>10</option>
+            </select><br>
+            <label for="atmosphere">Atmosphere:</label>
+            <select id="atmosphere" name="atmosphere">
+                <option value="Corrosive" {% if world.atmosphere == "Corrosive" %} selected {% endif %}>Corrosive</option>
+                <option value="Inert" {% if world.atmosphere == "Inert" %} selected {% endif %}>Inert</option>
+                <option value="Airless or Thin" {% if world.atmosphere == "Airless or Thin" %} selected {% endif %}>Airless or Thin</option>
+                <option value="Breathable" {% if world.atmosphere == "Breathable" %} selected {% endif %}>Breathable</option>
+                <option value="Thick" {% if world.atmosphere == "Thick" %} selected {% endif %}>Thick</option>
+                <option value="Invasive" {% if world.atmosphere == "Invasive" %} selected {% endif %}>Invasive</option>
+                <option value="Corrosive and Invasive" {% if world.atmosphere == "Corrosive and Invasive" %} selected {% endif %}>Corrosive and Invasive</option>
+            </select><br>
+            <label for="gravity">Gravity:</label>
+            <select id="gravity" name="gravity">
+                <option value="Micro or Zero-G" {% if world.gravity == "Micro or Zero-G" %} selected {% endif %}>Micro or Zero-G</option>
+                <option value="Very Low G" {% if world.gravity == "Very Low G" %} selected {% endif %}>Very Low G</option>
+                <option value="Low G" {% if world.gravity == "Low G" %} selected {% endif %}>Low G</option>
+                <option value="Normal" {% if world.gravity == "Normal" %} selected {% endif %}>Normal</option>
+                <option value="High G" {% if world.gravity == "High G" %} selected {% endif %}>High G</option>
+                <option value="Very High G" {% if world.gravity == "Very High G" %} selected {% endif %}>Very High G</option>
+                <option value="Crushing Gravity" {% if world.gravity == "Crushing Gravity" %} selected {% endif %}>Crushing Gravity</option>
+            </select><br>
+            <label for="temperature">Temperature:</label>
+            <select id="temperature" name="temperature">
+                <option value="Frozen" {% if world.temperature == "Frozen" %} selected {% endif %}>Frozen</option>
+                <option value="Cold" {% if world.temperature == "Cold" %} selected {% endif %}>Cold</option>
+                <option value="Variable Cold" {% if world.temperature == "Variable Cold" %} selected {% endif %}>Variable Cold</option>
+                <option value="Temperate" {% if world.temperature == "Temperate" %} selected {% endif %}>Temperate</option>
+                <option value="Variable Warm" {% if world.temperature == "Variable Warm" %} selected {% endif %}>Variable Warm</option>
+                <option value="Warm" {% if world.temperature == "Warm" %} selected {% endif %}>Warm</option>
+                <option value="Burning" {% if world.temperature == "Burning" %} selected {% endif %}>Burning</option>
+            </select><br>
+            <label for="biosphere">Biosphere:</label>
+            <select id="biosphere" name="biosphere">
+                <option value="Remnant" {% if world.biosphere == "Remnant" %} selected {% endif %}>Remnant</option>
+                <option value="Microbial" {% if world.biosphere == "Microbial" %} selected {% endif %}>Microbial</option>
+                <option value="No Native Biosphere" {% if world.biosphere == "No Native Biosphere" %} selected {% endif %}>No Native Biosphere</option>
+                <option value="Human Miscible" {% if world.biosphere == "Human Miscible" %} selected {% endif %}>Human Miscible</option>
+                <option value="Immiscible" {% if world.biosphere == "Immiscible" %} selected {% endif %}>Immiscible</option>
+                <option value="Hybrid" {% if world.biosphere == "Hybrid" %} selected {% endif %}>Hybrid</option>
+                <option value="Engineered" {% if world.biosphere == "Engineered" %} selected {% endif %}>Engineered</option>
+            </select><br>
+            <label for="population">Population:</label>
+            <select id="population" name="population">
+                <option value="Failed Colony" {% if world.population == "Failed Colony" %} selected {% endif %}>Failed Colony</option>
+                <option value="Outpost" {% if world.population == "Outpost" %} selected {% endif %}>Outpost</option>
+                <option value="Fewer than a million" {% if world.population == "Fewer than a million" %} selected {% endif %}>Fewer than a million</option>
+                <option value="Several million" {% if world.population == "Several million" %} selected {% endif %}>Several million</option>
+                <option value="Hundreds of millions" {% if world.population == "Hundreds of millions" %} selected {% endif %}>Hundreds of millions</option>
+                <option value="Billions" {% if world.population == "Billions" %} selected {% endif %}>Billions</option>
+                <option value="Alien inhabitants" {% if world.population == "Alien inhabitants" %} selected {% endif %}>Alien inhabitants</option>
+            </select><br>
+            <label for="techlevel">Tech Level:</label>
+            <select id="techlevel" name="techlevel">
+                <option value="TL0 - Neolithic" {% if world.techlevel == "TL0 - Neolithic" %} selected {% endif %}>TL0 - Neolithic</option>
+                <option value="TL1 - Medieval" {% if world.techlevel == "TL1 - Medieval" %} selected {% endif %}>TL1 - Medieval</option>
+                <option value="TL2 - Early industrial" {% if world.techlevel == "TL2 - Early industrial" %} selected {% endif %}>TL2 - Early industrial</option>
+                <option value="TL3 - present-day Earth" {% if world.techlevel == "TL3 - present-day Earth" %} selected {% endif %}>TL3 - present-day Earth</option>
+                <option value="TL4 - Postech" {% if world.techlevel == "TL4 - Postech" %} selected {% endif %}>TL4 - Postech</option>
+                <option value="TL4+ - Postech with specialities" {% if world.techlevel == "TL4+ - Postech with specialities" %} selected {% endif %}>TL4+ - Postech with specialities</option>
+                <option value="TL5 - Pretech" {% if world.techlevel == "TL5 - Pretech" %} selected {% endif %}>TL5 - Pretech</option>
+            </select><br>
+            <label for="tag1">Tag 1:</label>
+            <input id="tag1" type="text" name="tag1" value="{{world.tag1}}"><br>
+            <label for="tag2">Tag 2:</label>
+            <input id="tag2" type="text" name="tag2" value="{{world.tag2}}"><br>
+            <p>Description and Notes:</p>
+            <textarea rows="10" cols="50" name="desc">{{world.desc}}</textarea><br>
+            <button class="btn btn-dark" type="submit">Update World</button>  
+            <a href="/swn/confirmworlddelete/{{world.id}}" class="btn btn-danger">Delete World</a>  
+        </form>
+    </div>
+
+
+    <!-- Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

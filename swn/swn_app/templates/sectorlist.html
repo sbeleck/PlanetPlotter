@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sector List</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><span class="navbar-brand mx-2 my-1 h2">Sector List</span></li>
+        </ul>
+        <a href="/logout" class="nav-item btn btn-info nav-item col-1 mx-2 my-1">Logout</a>
+    </nav>
+    <table class="table-striped mx-auto mt-5">
+        <thead class="thead-dark text-white bg-dark">
+            <tr>
+                <th class="px-3 text-center">Sector ID</th>
+                <th class="px-3 text-center">Sector Name</th>
+                <th class="px-3 text-center">Public</th>
+                <th class="px-3 text-center">Owned By</th>
+                <th class="px-3 text-center">Last Updated</th>
+                <th class="px-3 text-center">Created</th>
+   
+            </tr>
+        </thead>
+        {% for sector in sectors %}
+        <tr>
+            <td>{{sector.id}}</td>
+            <td><a href="/swn/sectordetail/{{sector.id}}">{{sector.name}}</a></td>
+            <td>{{sector.public}}</td>
+            <td>{{sector.owned_by.first_name}} {{sector.owned_by.last_name}}</td>
+            <td>{{sector.updated_at}}</td>
+            <td>{{sector.created_at}}</td>
+        </tr>
+        {% endfor %}
+        {% for sector in publics %}
+        <tr>
+            <td>{{sector.id}}</td>
+            <td><a href="/swn/sectordetail/{{sector.id}}">{{sector.name}}</a></td>
+            <td>{{sector.public}}</td>
+            <td>{{sector.owned_by.first_name}} {{sector.owned_by.last_name}}</td>
+            <td>{{sector.updated_at}}</td>
+            <td>{{sector.created_at}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <a class="btn btn-dark my-5 mx-5" href="/swn/generate">New Sector</a>
+
+    <!-- Bootstrap required --> 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

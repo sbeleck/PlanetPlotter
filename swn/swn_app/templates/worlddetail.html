@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>World Detail: {{world.name}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto col-11">
+            <li class="nav-item"><span class="navbar-brand mx-2 my-1 h2">World Detail: {{world.name}}</span></li>
+            <li class="nav-item"><a href="/swn" class="nav-item btn btn-light mx-2 my-1">Sector List</a></li>
+            <li class="nav-item"><a href="/swn/sectordetail/{{world.sector.id}}" class="nav-item btn btn-light mx-2 my-1">Back to {{world.sector.name}}</a></li>
+        </ul>
+        <a href="/logout" class="nav-item btn btn-info nav-item col-1 mx-2 my-1">Logout</a>
+    </nav>
+    <div class="mx-5 my-5">
+            <p><strong>World Name</strong>: {{world.name}}</p>
+            <p><strong>X Coordinate:</strong> {{world.x_coord}}</p>
+            <p><strong>Y Coordinate:</strong> {{world.y_coord}}</p>
+            <p><strong>Atmosphere:</strong> {{world.atmosphere}}</p>
+            <p><strong>Gravity:</strong> {{world.gravity}}</p>
+            <p><strong>Temperature:</strong> {{world.temperature}}</p>
+            <p><strong>Biosphere:</strong> {{world.biosphere}}</p>
+            <p><strong>Population:</strong> {{world.population}}</p>
+            <p><strong>Tech Level:</strong> {{world.techlevel}}</p>
+            <p><strong>Tag 1:</strong> {{world.tag1}}</p>
+            <p><strong>Tag 2:</strong> {{world.tag2}}</p>
+            <p><strong>Description and Notes:</strong></p>
+            <p>{{world.desc}}</p>
+            {% if owned %}
+            <a href="/swn/editworld/{{world.id}}" class="btn btn-dark">Edit World</a>
+            {% endif %}
+    </div>
+
+
+    <!-- Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

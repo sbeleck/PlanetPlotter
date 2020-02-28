@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mt-5 col-lg bg-dark text-white">PlanetPlotter</h1>
+        <p class=text-center>For Science Fiction RPGs</p>
+        <div class="row my-5">
+            <div class="col-4 mx-auto">
+                <h2>Register</h2>
+                {% if messages %}
+                    <ul class="list-unstyled">
+                        {% for message in messages %}
+                        {% if message.extra_tags == 'register'%}
+                        <li class="text-danger">{{message}}</li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <label for="fname">First name:</label><br>
+                    <input id="fname" type="text" name="first_name"><br>
+                    <label for="lname">Last name:</label><br>
+                    <input id="lname" type="text" name="last_name"><br>
+                    <label for="email">Email:</label><br>
+                    <input id="email" type="text" name="email"><br>
+                    <!-- <p>Birth Date:</p>
+                    <input type="date" name="birthdate"> -->
+                    <label for="password">Password:</label><br>
+                    <input id="password" type="password" name="password"><br>
+                    <label for="confirm">Confirm Password:</label><br>
+                    <input id="confirm" type="password" name="pw_confirm"><br>
+                    <button class='btn btn-dark my-5' type="submit">Register</button>
+                </form>
+            </div>
+            <div class="col-4 mx-auto">
+                <h2 class="text-center">OR</h2>
+            </div>
+            <div class="col-4 mx-auto">
+                <h2>Log In</h2>
+                {% if messages %}
+                <ul class="list-unstyled">
+                    {% for message in messages %}
+                    {% if message.extra_tags == 'login'%}
+                    <li class="text-danger">{{message}}</li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    <label for="logemail" class="text-right">Email:</label><br>
+                    <input id="logemail" type="text" name="login_email"><br>
+                    <label for="logpasswd" class="text-right">Password:</label><br>
+                    <input id="logpasswd" type="password" name="login_password"><br>
+                    <button class='btn btn-dark my-5' type="submit">Log in</button>
+                </form>
+            </div>
+    </div>
+    
+    <!-- Bootstrap stuff -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

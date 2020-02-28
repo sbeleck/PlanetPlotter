@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sector Detail: {{current_sector.name}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul class="navbar-nav mr-auto col-11">
+            <li class="nav-item"><span class="navbar-brand mx-2 my-1 h2">Edit Sector: {{current_sector.name}}</span></li>
+            <li class="nav-item"><a href="/swn" class="nav-item btn btn-light mx-2 my-1">Sector List</a></li>
+            <li class="nav-item"><a href="/swn/sectordetail/{{current_sector.id}}" class="nav-item btn btn-light mx-2 my-1">Back to {{current_sector.name}}</a></li>
+        </ul>
+        <a href="/logout" class="nav-item btn btn-info mx-2 my-1 nav-item col-1">Logout</a>
+    </nav>
+    <div class="row mx-5 my-5">
+        <div class="col-7">
+            <img src="{{current_sector.map.url}}" alt="sector map image">
+        </div>
+        <div class="col-5 form_group">
+            <form action="/swn/updatesector/{{current_sector.id}}" method="POST">
+                {% csrf_token %}
+                <label for="sector_name" class=""><strong>Sector Name:</strong></label>
+                <input id="sector_name" type="text" name="sector_name" value="{{current_sector.name}}"><br>
+                <label for="sector_public" class=""><strong>Public:</strong></label>
+                <input id="sector_public" type="radio" name="sector_public" value="True" {% if current_sector.public %} checked {% endif %}>
+                <label for="sector_public"><strong>Private:</strong></label>
+                <input id="sector_public" type="radio" name="sector_public" value="False" {% if not current_sector.public %} checked {% endif %}>
+                <br>
+                <label for="sector_desc" class="align-top"><strong>Sector Notes:</strong></label>
+                <textarea id="sector_desc" class="align-top" rows="7" cols="60" name="sector_desc">{{current_sector.desc}}</textarea><br>
+                <button class='btn btn-dark my-5' type="submit">Update Sector</button>
+                <a href="/swn/confirmsectordelete/{{current_sector.id}}" class="btn btn-danger">Delete Sector</a>
+            </form>
+        </div>
+    </div>
+    <table class="table-striped mx-auto mb-5">
+        <thead class="thead-dark bg-dark text-white">
+            <tr>
+                <th>World Name</th>
+                <th>X Coord</th>
+                <th>Y Coord</th>
+                <th>Atmosphere</th>
+                <th>Gravity</th>
+                <th>Temperature</th>
+                <th>Biosphere</th>
+                <th>Population</th>
+                <th>Tech Level</th>
+                <th>Tag 1</th>
+                <th>Tag 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for world in worlds %}
+            <tr>
+                <td><a href="/swn/worlddetail/{{world.id}}">{{world.name}}</a></td>
+                <td>{{world.x_coord}}</td>
+                <td>{{world.y_coord}}</td>
+                <td>{{world.atmosphere}}</td>
+                <td>{{world.gravity}}</td>
+                <td>{{world.temperature}}</td>
+                <td>{{world.biosphere}}</td>
+                <td>{{world.population}}</td>
+                <td>{{world.techlevel}}</td>
+                <td>{{world.tag1}}</td>
+                <td>{{world.tag2}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+
+    <!-- Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
